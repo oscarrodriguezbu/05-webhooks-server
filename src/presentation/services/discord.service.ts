@@ -1,17 +1,12 @@
 import { envs } from '../../config';
 
 
-
-
 export class DiscordService {
-
   private readonly discordWebhookUrl = envs.DISCORD_WEBHOOK_URL;
 
-  constructor() {}
+  constructor() { }
 
-
-  async notify( message: string ) {
-
+  async notify(message: string) {
     const body = {
       content: message,
       // embeds: [
@@ -21,20 +16,17 @@ export class DiscordService {
       // ]
     }
 
-    const resp = await fetch( this.discordWebhookUrl, {
+    const resp = await fetch(this.discordWebhookUrl, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
     });
 
-    if ( !resp.ok ) {
+    if (!resp.ok) {
       console.log('Error sending message to discord');
       return false;
     }
 
     return true;
   }
-
-
-
 }

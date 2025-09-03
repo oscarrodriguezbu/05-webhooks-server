@@ -3,7 +3,6 @@ import { GitHubService } from '../services/github.service';
 import { DiscordService } from '../services/discord.service';
 
 
-
 export class GithubController {
 
   constructor(
@@ -17,7 +16,6 @@ export class GithubController {
     let message: string;
 
     switch (githubEvent) {
-
       case 'star':
         message = this.githubService.onStar(payload);
         break;
@@ -26,10 +24,8 @@ export class GithubController {
         message = this.githubService.onIssue(payload);
         break;
 
-
       default:
         message = `Unknown event ${githubEvent}`;
-
     }
 
     this.discordService.notify(message)
